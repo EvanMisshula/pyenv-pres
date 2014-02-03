@@ -1,0 +1,38 @@
+* Who is Evan Misshula?
+  - @emisshula
+  - EvanMisshula@gmail.com
+  - https://github.com/EvanMisshula
+  - http://mofj.commons.gc.cuny.edu
+  - Evan Misshula on LinkedIn
+* What is a virtual environment and why do you want one?
+** Virtual Environment is an is an isolated working copy of Python which
+   allows you to work on a specific project without worry of affecting 
+   other projects.([[http://docs.python-guide.org/en/latest/dev/virtualenvs/][pydocs]])
+*** For example, you can work on a project which requires Django 1.7 
+    while also maintaining a project which requires Django 1.5.
+* What is a non-system version of python?
+** For Linux and Mac OS X versions of python come pre-installed.  These 
+   can sometimes lag, especially the bleeding edge versions. Upgrading
+   by compiling from source can break your system. (See the following,
+   [[http://stackoverflow.com/questions/18834381/i-broke-python-what-can-i-do][I-broke-python]], [[http://askubuntu.com/questions/333109/upgrading-to-python-2-7-5-on-ubuntu-12-04][Upgrading-to-python-2.7.5]].) Certain libraries under
+   active development may also require a specific version of python in
+   order to use a critical feature, Django, IPython, pandas,
+   matplotlib, scikit-learn and scipy. (See [[http://ipython.org/faq.html][IPython-requires-2.6.x]],
+   [[http://stackoverflow.com/questions/3008509/python-version-2-6-required-which-was-not-found-in-the-registry][required-python-version-not-found]], [[http://pandas.pydata.org/pandas-docs/stable/install.html#dependencies][pandas-no-longer-supports-2.5.x]]
+   and [[https://docs.djangoproject.com/en/dev/faq/install/][django-requires-2.7.x]])
+
+* What is [[https://github.com/yyuu/pyenv][pyenv]]?
+** Pyenv is a series of shell scripts that manage your
+   python versions through the use of [[https://github.com/yyuu/pyenv#understanding-shims][shims]]. It does 
+   not debend on any version of python and was forked
+   from [[https://github.com/sstephenson/rbenv][rebenv]].
+* How do I use pyenv?
+  - First install it ([[http://mofj.commons.gc.cuny.edu/2014/01/20/ubuntu-set-up-a-virtual-environment-with-ipython-numpy-and-pandas/][mine]], [[http://askubuntu.com/questions/333109/upgrading-to-python-2-7-5-on-ubuntu-12-04][KBowen]] or [[https://github.com/yyuu/pyenv#basic-github-checkout][Yyuu]])
+  - Demo time...
+* What is pyenv-virtualenv?
+** [[https://github.com/yyuu/pyenv-virtualenv][pyenv-virtualenv]] is a [[https://github.com/yyuu/pyenv][pyenv]] plugin that provides a 
+   pyenv virtualenv command to create virtualenv for 
+   Python on UNIX-like systems.
+* How do I use pyenv virtualenv?
+  - First install it ([[http://mofj.commons.gc.cuny.edu/2014/01/20/ubuntu-set-up-a-virtual-environment-with-ipython-numpy-and-pandas/][mine]] or [[https://github.com/yyuu/pyenv-virtualenv][Yyuu-virtualenv]])
+  - Demo time
