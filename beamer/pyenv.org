@@ -1,38 +1,120 @@
+#+TITLE:     Python interpreter and library management with pyenv
+#+AUTHOR:    Evan Misshula
+#+EMAIL:     emisshula@jjay.cuny.edu
+#+DATE:      2014-02-06 mon
+#+DESCRIPTION: 
+#+KEYWORDS: 
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+OPTIONS: LaTeX:t
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME:
+#+BEGIN_COMMENT
+   #LaTeX: \useoutertheme{umbcfootline} 
+#+END_COMMENT
+
+#+startup: beamer indent
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+
+#+LATEX_HEADER: \usepackage{attrib}
+#+LATEX_HEADER: \usepackage[autostyle]{csquotes}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-icomp,sortlocale=de_DE,natbib=true,url=false, doi=true,eprint=false]{biblatex}
+#+LATEX_HEADER: \addbibresource{mybibfile.bib}
+#+LATEX_HEADER: \usepackage{tikz}
+
+
+#+BEAMER_FRAME_LEVEL: 2
+#+BEAMER_THEME: Warsaw
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
 * Who is Evan Misshula?
+** Who is Evan Misshula?                                             :export:
   - @emisshula
   - EvanMisshula@gmail.com
   - https://github.com/EvanMisshula
   - http://mofj.commons.gc.cuny.edu
   - Evan Misshula on LinkedIn
-* What is a virtual environment and why do you want one?
-** Virtual Environment is an is an isolated working copy of Python which
-   allows you to work on a specific project without worry of affecting 
-   other projects.([[http://docs.python-guide.org/en/latest/dev/virtualenvs/][pydocs]])
-*** For example, you can work on a project which requires Django 1.7 
-    while also maintaining a project which requires Django 1.5.
-* What is a non-system version of python?
-** For Linux and Mac OS X versions of python come pre-installed.  These 
-   can sometimes lag, especially the bleeding edge versions. Upgrading
-   by compiling from source can break your system. (See the following,
-   [[http://stackoverflow.com/questions/18834381/i-broke-python-what-can-i-do][I-broke-python]], [[http://askubuntu.com/questions/333109/upgrading-to-python-2-7-5-on-ubuntu-12-04][Upgrading-to-python-2.7.5]].) Certain libraries under
-   active development may also require a specific version of python in
-   order to use a critical feature, Django, IPython, pandas,
-   matplotlib, scikit-learn and scipy. (See [[http://ipython.org/faq.html][IPython-requires-2.6.x]],
-   [[http://stackoverflow.com/questions/3008509/python-version-2-6-required-which-was-not-found-in-the-registry][required-python-version-not-found]], [[http://pandas.pydata.org/pandas-docs/stable/install.html#dependencies][pandas-no-longer-supports-2.5.x]]
-   and [[https://docs.djangoproject.com/en/dev/faq/install/][django-requires-2.7.x]])
 
-* What is [[https://github.com/yyuu/pyenv][pyenv]]?
-** Pyenv is a series of shell scripts that manage your
+* What is a virtual environment and why do you want one?             :export:
+** What is a virtual environment and why do you want one?
+   A virtual environment which allows you to work on a specific
+   project without worry of affecting other projects.([[http://docs.python-guide.org/en/latest/dev/virtualenvs/][pydocs]])
+*** New project requires Django 1.7, old one requires Django 1.5. :B_exampleblock:
+    :PROPERTIES:
+    :BEAMER_env: exampleblock
+    :END:
+
+** Unmanaged library conflict                            :B_fullframe:export:
+   :PROPERTIES:
+   :BEAMER_env: fullframe
+   :END:
+       #+ATTR_LATEX: width=\paperwidth, 
+       #+CAPTION: Unmanaged library conflict
+    [[file:./images/2CarGarage1.jpg]]
+
+
+
+** Unmanaged library conflict                                   :B_fullframe:
+   :PROPERTIES:
+   :BEAMER_env: fullframe
+   :END:
+       #+ATTR_LATEX: width=\paperwidth, 
+       #+CAPTION: Managed library conflict
+    [[file:./images/TwoCars.jpeg]]
+
+
+* What is a non-system version of python?                            :export:
+** What is a /non-system/ version of python?
+   For Linux and Mac OS X versions of python come pre-installed.  These 
+   lag the bleeding edge versions. 
+*** Upgrading by compiling from source can break your system. :B_exampleblock
+    :PROPERTIES:
+    :BEAMER_env: exampleblock
+    :BEAMER_col: 45%
+    :END:
+    See stack overflow questions: 
+    - [[http://stackoverflow.com/questions/18834381/i-broke-python-what-can-i-do][I-broke-python]],
+    - [[http://askubuntu.com/questions/333109/upgrading-to-python-2-7-5-on-ubuntu-12-04][Upgrading-to-python-2.7.5]]
+
+** /Non-system/ version of python
+*** Important libraries require a specific version of python :B_exampleblock
+    :PROPERTIES:
+    :BEAMER_env: exampleblock
+    :BEAMER_col: 45%
+    :END:
+    critical features depend on the version for:
+    - Django ([[https://docs.djangoproject.com/en/dev/faq/install/][django-requires-2.7.x]])
+    - IPython ([[http://ipython.org/faq.html][IPython-requires-2.6.x]])
+    - pandas ([[http://pandas.pydata.org/pandas-docs/stable/install.html#dependencies][pandas-no-longer-supports-2.5.x]]) 
+    - matplotlib
+    - scikit-learn 
+    - scipy.  ([[http://stackoverflow.com/questions/3008509/python-version-2-6-required-which-was-not-found-in-the-registry][required-python-version-not-found]])
+    
+* What is [[https://github.com/yyuu/pyenv][pyenv]]?                                                   :noexport:
+** What is [[https://github.com/yyuu/pyenv][pyenv]]?
+   Pyenv is a series of shell scripts that manage your
    python versions through the use of [[https://github.com/yyuu/pyenv#understanding-shims][shims]]. It does 
    not debend on any version of python and was forked
    from [[https://github.com/sstephenson/rbenv][rebenv]].
-* How do I use pyenv?
+
+* How do I use pyenv?                                              :noexport:
+** How do I use pyenv?
   - First install it ([[http://mofj.commons.gc.cuny.edu/2014/01/20/ubuntu-set-up-a-virtual-environment-with-ipython-numpy-and-pandas/][mine]], [[http://askubuntu.com/questions/333109/upgrading-to-python-2-7-5-on-ubuntu-12-04][KBowen]] or [[https://github.com/yyuu/pyenv#basic-github-checkout][Yyuu]])
   - Demo time...
-* What is pyenv-virtualenv?
-** [[https://github.com/yyuu/pyenv-virtualenv][pyenv-virtualenv]] is a [[https://github.com/yyuu/pyenv][pyenv]] plugin that provides a 
-   pyenv virtualenv command to create virtualenv for 
-   Python on UNIX-like systems.
-* How do I use pyenv virtualenv?
+
+* What is pyenv-virtualenv?                                        :noexport:
+** What is pyenv-virtualenv?
+   - [[https://github.com/yyuu/pyenv-virtualenv][pyenv-virtualenv]] is a [[https://github.com/yyuu/pyenv][pyenv]] plugin that provides a 
+     pyenv virtualenv command to create virtualenv for 
+     Python on UNIX-like systems.
+
+
+* How do I use pyenv virtualenv?                                   :noexport:
+** How do I use pyenv virtualenv?
   - First install it ([[http://mofj.commons.gc.cuny.edu/2014/01/20/ubuntu-set-up-a-virtual-environment-with-ipython-numpy-and-pandas/][mine]] or [[https://github.com/yyuu/pyenv-virtualenv][Yyuu-virtualenv]])
   - Demo time
