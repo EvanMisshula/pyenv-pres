@@ -5,7 +5,11 @@
     (LaTeX-add-labels
      "sec-1"
      "sec-2"
-     "sec-3")
+     "sec-3"
+     "sec-4"
+     "sec-5"
+     "sec-6"
+     "sec-7")
     (TeX-run-style-hooks
      "tikz"
      "biblatex"
